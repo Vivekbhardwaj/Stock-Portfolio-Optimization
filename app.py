@@ -9,6 +9,29 @@ APP_ROOT = os.path.dirname(os.path.abspath(__file__))
 def home():
     return render_template("index.html")
 
+
+''''
+Ask @umang dubey to implement this page.
+Basically a hotstocks.html page needs to be designed that will be put inside templages folder.
+'''
+@app.route('/hotstocks')
+def hotStocks():
+    return render_template("hotstocks.html")
+
+# The flows below is a static web page and can be easily picked up.
+@app.route('/optimizers')
+def optimizers():
+    return render_template("optimizers.html")
+
+@app.route('/report')
+def report():
+    return render_template("report.html",report="oldreport.pdf")
+
+@app.route('/signUp')
+def signUp():
+    return "Not a part of current project.To be done."
+
+
 @app.route('/optimize', methods=['POST'])
 def process_json():
     
