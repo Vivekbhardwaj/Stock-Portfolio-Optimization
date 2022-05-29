@@ -1,6 +1,7 @@
 import os
 import re
 from flask import Flask, request , json ,render_template, send_from_directory
+from portfolio import improve
 app = Flask(__name__)
 
 APP_ROOT = os.path.dirname(os.path.abspath(__file__))
@@ -33,20 +34,20 @@ def signUp():
 
 
 @app.route('/optimize', methods=['POST'])
-def process_json():
+def optimize():
     
     content_type = request.headers.get('Content-Type')
     print(content_type)
 
     data  = request.form
-    # print(data["tickers"])
-    # print(data["amount"])
 
     amt = int(data["amount"])
     tic = list(data["tickers"].split(','))
 
     print(amt)
     print(tic)
+
+    d = improve(tic,amt)
 
     # get these after rendering and storing in assets
     _chart_markowitz = "piechart.png"
